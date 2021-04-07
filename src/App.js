@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Quote from './components/Quote'
+import { useState } from 'react';
 
 function App() {
+  let quotesData = {}
+  const [author, setAuthor] = useState("Toni Virtanen")
+  const [quote, setQuote] = useState("Click button to get quote")
+
+  // Load quetes json
+  function getQuotes() {
+    const data = require("./quotes.json")
+    return data.quotes
+  }
+  
+  function getRandomQuote() {
+    let index = Math.floor(Math.random() * quotesData.length);
+    let randomAuthor = quotesData[index].author;
+    let randomQuote = quotesData[index].quote;
+    setAuthor(randomAuthor)
+    setQuote(randomQuote)
+  }
+
+  quotesData = getQuotes()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Quote 
+        random={getRandomQuote} 
+        author={author} 
+        quote={quote} 
+        />
     </div>
   );
 }
