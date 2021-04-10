@@ -7,7 +7,7 @@ const Quote = ( {random, author, quote} ) => {
             <p id="author">{author}</p>
             <div className="below-parent">
                 <button id="new-quote" onClick={random}>New Quote</button>
-                <a id="tweet-quote" href="twitter.com/intent/tweet" target="_blank">tweet forward</a>
+                <a id="tweet-quote" href="https://twitter.com/intent/tweet" target="_top" rel="nonreferrer">tweet forward</a>
             </div>
         </div>
     )
